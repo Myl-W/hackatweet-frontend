@@ -113,7 +113,9 @@ function SignUp() {
         </p>
       </div>
 
-      <button type="submit">S'enregistrer</button>
+      <button type="button" className={styles.register}>
+        S'enregistrer
+      </button>
     </div>
   );
 }
