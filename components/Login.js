@@ -1,4 +1,4 @@
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Login.module.css";
 import { useState } from "react";
 import Image from "next/image";
 import SignIn from "./SignIn";

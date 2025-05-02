@@ -1,0 +1,88 @@
+.home {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.home_left {
+  width: 40%;
+  height: 100vh;
+  background-image: url("../public/fond_twitter.webp");
+}
+
+.home_right {
+  width: 60%;
+  height: 100vh;
+  background-color: black;
+}
+
+.head_right {
+  margin: 20px;
+}
+
+.logo_home_left {
+  display: flex;
+  margin-left: 25%;
+  margin-top: 35%;
+}
+
+.logo_left {
+  transform: rotate(180deg);
+}
+
+.logo_right {
+  transform: rotate(180deg);
+}
+
+.btn_signup {
+  background-color: rgba(132, 168, 250, 0.677);
+  border: none;
+  border-radius: 30px;
+  padding: 10px;
+  width: 200px;
+  color: white;
+  display: inline;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: normal;
+  list-style: none;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  margin-left: 30px;
+  cursor: pointer;
+}
+
+.btn_signin {
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 30px;
+  padding: 10px;
+  width: 200px;
+  color: white;
+  display: inline;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: normal;
+  list-style: none;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  margin-left: 30px;
+  cursor: pointer;
+}
+
+.text_btn {
+  color: white;
+  margin-left: 30px;
+}
+
+.text {
+  color: white;
+  margin-left: 30px;
+  font-family: Verdana, sans-serif;
+  font-weight: 700;
+  font-size: 60px;
+}

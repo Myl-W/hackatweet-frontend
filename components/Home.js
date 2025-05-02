@@ -4,9 +4,11 @@ function Home() {
   return (
     <div>
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </main>
     </div>
   );
