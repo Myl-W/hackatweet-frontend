@@ -1,9 +1,15 @@
 "use client";
-import Home from "../../components/Home";
 import styles from "../styles/Home.module.css";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 function Home() {
+  const router = useRouter();
+
+  const disconnect = () => {
+    router.push("/login");
+  };
+
   return (
     <div>
       <main className={styles.main}>
@@ -44,7 +50,9 @@ function Home() {
           </div>
         </div>
         <div className={styles.footer}>
-          <button className={styles.logout_btn}>Logout</button>
+          <button className={styles.logout_btn} onClick={disconnect}>
+            Logout
+          </button>
         </div>
       </main>
     </div>

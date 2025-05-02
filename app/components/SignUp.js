@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "../styles/ModalSignup.module.css";
 import {
@@ -9,6 +10,7 @@ import {
 import { userLogin, userLogout } from "../../reducer/userAccess";
 
 function SignUp() {
+  const router = useRouter();
   const dispatch = useDispatch();
   const [day, setDay] = useState("");
   const [month, setMonth] = useState("");
@@ -25,7 +27,6 @@ function SignUp() {
   const login = useSelector((state) => state.userAccess.valueLogin);
   const logout = useSelector((state) => state.userAccess.valueLogout);
 
-  console.log(login);
   const days = Array.from({ length: 31 }, (_, i) => i + 1);
   const months = [
     "January",

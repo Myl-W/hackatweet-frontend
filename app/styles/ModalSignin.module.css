@@ -9,16 +9,6 @@
   z-index: 1000;
 }
 
-.content {
-  background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  position: relative;
-  max-width: 500px;
-  width: 90%;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 1);
-}
-
 .close_button {
   position: absolute;
   top: 10px;
@@ -29,6 +19,52 @@
   cursor: pointer;
 }
 
+.loginContent {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  background-color: #000;
+  border-radius: 20px;
+}
+
 .title {
   color: white;
+  font-size: 24px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.input {
+  width: 300px;
+  height: 40px;
+  margin-bottom: 20px;
+  background-color: #111;
+  color: white;
+  border-radius: 5px;
+  padding: 0 10px;
+  border: 1px solid #333;
+}
+
+.login {
+  background-color: rgb(94, 96, 98);
+  width: 300px;
+  height: 40px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  color: white;
+}
+
+.btn_inscription {
+  animation: none;
+  color: #00acee;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }

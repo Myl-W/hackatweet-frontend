@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { userUsername, userPassword } from "../../reducer/login";
+import { userLogin, userLogout } from "../../reducer/userAccess";
 
 function SignIn() {
   const router = useRouter();
@@ -11,10 +12,8 @@ function SignIn() {
   const username = useSelector((state) => state.login.valueUsername);
   const password = useSelector((state) => state.login.valuePassword);
 
-  console.log(username);
-  console.log(password);
-
-  const handleConnection = () => {
+  const handleConnection = (e) => {
+    e.preventDefault();
     fetch("http://localhost:3000/users/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -37,11 +36,19 @@ function SignIn() {
       });
   };
 
+  const handleRedirectLogin = () => {
+    router.push("login/SignUp");
+  };
+
   return (
-    <div>
-      <h2 className={styles.title}>Connexion</h2>
-      <form>
+    <div className={styles.loginContent}>
+      <div>
+        <h2 className={styles.title}>Connexion</h2>
+      </div>
+
+      <div>
         <input
+          className={styles.input}
           type="text"
           placeholder="Username"
           onChange={(e) => {
@@ -50,7 +57,10 @@ function SignIn() {
             dispatch(userUsername(value));
           }}
         />
+      </div>
+      <div>
         <input
+          className={styles.input}
           type="password"
           placeholder="Password"
           onChange={(e) => {
@@ -59,10 +69,27 @@ function SignIn() {
             dispatch(userPassword(value));
           }}
         />
-        <button type="submit" onClick={() => handleConnection()}>
+      </div>
+      <div>
+        <button
+          type="submit"
+          className={styles.login}
+          onClick={handleConnection}
+        >
           Se connecter
         </button>
-      </form>
+      </div>
+      <div>
+        <p>
+          Vous n'avez pas de compte ?{" "}
+          <button
+            onClick={handleRedirectLogin}
+            className={styles.btn_inscription}
+          >
+            Inscrivez-vous
+          </button>
+        </p>
+      </div>
     </div>
   );
 }
