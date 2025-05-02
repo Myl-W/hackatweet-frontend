@@ -1,7 +1,5 @@
 .overlay {
   position: fixed;
-  width: 400px;
-  height: 600px;
   background-color: rgba(0, 0, 0, 1);
   display: flex;
   align-items: center;
@@ -10,12 +8,16 @@
 }
 
 .content {
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
   padding: 30px;
   border-radius: 10px;
   position: relative;
   max-width: 500px;
-  width: 90%;
+  width: 100%;
   box-shadow: 0 0 15px rgba(0, 0, 0, 1);
 }
 
@@ -39,4 +41,37 @@
 
 .text {
   color: white;
+}
+
+.input {
+  width: 80%;
+  height: 40px;
+  margin: 10px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+}
+
+.contentDate {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.dateInput {
+  height: 40px;
+  border-radius: 5px;
+  width: 100px;
+  padding: 5px;
+  background-color: black;
+  color: white;
+}
+
+.dateLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 500;
 }
