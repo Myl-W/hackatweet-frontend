@@ -1,11 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styles from "../styles/ModalSignup.module.css";
+import { userFirstname, userUsername, userPassword } from "../reducer/register";
+import { userLogin, userLogout } from "../reducer/userAccess";
 
 function SignUp() {
+  const dispatch = useDispatch();
   const [day, setDay] = useState("");
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
+  const [signUpFirstname, setSignUpFirstname] = useState("");
+  const [signUpUsername, setSignUpUsername] = useState("");
+  const [signUpPassword, setSignUpPassword] = useState("");
+  const [birthDate, setBirthDate] = useState("");
 
+  const firstname = useSelector((state) => state.register.valueFirstname);
+  const username = useSelector((state) => state.register.valueUsername);
+  const password = useSelector((state) => state.register.valuePassword);
+
+  const login = useSelector((state) => state.userAccess.valueLogin);
+  const logout = useSelector((state) => state.userAccess.valueLogout);
+
+  console.log(login);
   const days = Array.from({ length: 31 }, (_, i) => i + 1);
   const months = [
     "January",
@@ -26,19 +42,74 @@ function SignUp() {
     (_, i) => new Date().getFullYear() - i
   );
 
+  const handleRegister = () => {
+    fetch("http://localhost:3000/users/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstname: firstname,
+        username: username,
+        password: password,
+        birthDate,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.result) {
+          console.log(data);
+          dispatch(userLogin({ userAccess: data.result, token: data.token }));
+          setSignUpUsername("");
+          setSignUpPassword("");
+          setSignUpFirstname("");
+        }
+      });
+  };
+
+  useEffect(() => {
+    if (day && month && year) {
+      setBirthDate(`${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`);
+    }
+  }, [day, month, year]);
+
   return (
     <div className={styles.content}>
       <h2 className={styles.title}>Créer votre compte</h2>
 
       <div style={{ width: "100%" }}>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <input type="text" placeholder="Username" className={styles.input} />
+          <input
+            type="text"
+            placeholder="Firstname"
+            className={styles.input}
+            onChange={(e) => {
+              const value = e.target.value;
+              setSignUpFirstname(value);
+              dispatch(userFirstname(value));
+            }}
+          />
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <input
+            type="text"
+            placeholder="Username"
+            className={styles.input}
+            onChange={(e) => {
+              const value = e.target.value;
+              setSignUpUsername(value);
+              dispatch(userUsername(value));
+            }}
+          />
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <input
             type="password"
             placeholder="Password"
             className={styles.input}
+            onChange={(e) => {
+              const value = e.target.value;
+              setSignUpPassword(value);
+              dispatch(userPassword(value));
+            }}
           />
         </div>
       </div>
@@ -113,7 +184,11 @@ function SignUp() {
         </p>
       </div>
 
-      <button type="button" className={styles.register}>
+      <button
+        type="button"
+        className={styles.register}
+        onClick={() => handleRegister()}
+      >
         S'enregistrer
       </button>
     </div>

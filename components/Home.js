@@ -29,11 +29,20 @@ function Home() {
                 ></input>
               </div>
               <div className={styles.tweet_down}>
+                <p>0/280</p>
                 <button className={styles.btn_tweet}>Tweet</button>
               </div>
             </div>
           </div>
-          <div className={styles.right}></div>
+          <div className={styles.right}>
+            <div>
+              <h1 className={styles.title}>Trends</h1>
+            </div>
+            <div className={styles.hashtag}></div>
+          </div>
+        </div>
+        <div className={styles.footer}>
+          <button className={styles.logout_btn}>Logout</button>
         </div>
       </main>
     </div>
