@@ -9,7 +9,7 @@
 .home_left {
   width: 40%;
   height: 100vh;
-  background-image: url("../public/fond_twitter.webp");
+  background-image: url("/fond_twitter.webp");
 }
 
 .home_right {
@@ -37,7 +37,7 @@
 }
 
 .btn_signup {
-  background-color: 00acee;
+  background-color: #00acee;
   border: none;
   border-radius: 30px;
   padding: 10px;

@@ -1,12 +1,13 @@
+"use client";
+
 import styles from "../styles/Login.module.css";
 import { useState } from "react";
 import Image from "next/image";
-import SignIn from "./SignIn";
-import SignUp from "./SignUp";
-import Modal from "./Modal";
+import SignIn from "../components/SignIn";
+import SignUp from "../components/SignUp";
+import Modal from "../components/Modal";
 
-function Login() {
-  const [showRegister, setShowRegister] = useState(false);
+export default function LoginPage() {
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isSignInOpen, setIsSignInOpen] = useState(false);
 
@@ -17,8 +18,8 @@ function Login() {
           <div className={styles.logo_home_left}>
             <Image
               className={styles.logo_left}
-              src={"/logo-twitter.png"}
-              alt={"logo-twitter.png"}
+              src="/logo-twitter.png"
+              alt="logo-twitter"
               width={300}
               height={300}
             />
@@ -28,8 +29,8 @@ function Login() {
           <div className={styles.head_right}>
             <Image
               className={styles.logo_right}
-              src={"/logo-twitter.png"}
-              alt={"logo-twitter.png"}
+              src="/logo-twitter.png"
+              alt="logo-twitter"
               width={60}
               height={60}
             />
@@ -73,5 +74,3 @@ function Login() {
     </>
   );
 }
-
-export default Login;

@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "../styles/ModalSignup.module.css";
-import { userFirstname, userUsername, userPassword } from "../reducer/register";
-import { userLogin, userLogout } from "../reducer/userAccess";
+import {
+  userFirstname,
+  userUsername,
+  userPassword,
+} from "../../reducer/register";
+import { userLogin, userLogout } from "../../reducer/userAccess";
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -61,6 +65,9 @@ function SignUp() {
           setSignUpUsername("");
           setSignUpPassword("");
           setSignUpFirstname("");
+          router.push("/home");
+        } else {
+          router.push("/login");
         }
       });
   };
