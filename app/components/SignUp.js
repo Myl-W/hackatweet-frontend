@@ -7,7 +7,7 @@ import {
   userUsername,
   userPassword,
 } from "../../reducer/register";
-import { userLogin, userLogout } from "../../reducer/userAccess";
+import { userLogin } from "../../reducer/userAccess";
 
 function SignUp() {
   const router = useRouter();
@@ -130,24 +130,6 @@ function SignUp() {
         </p>
       </div>
       <div className={styles.contentDate}>
-        <label className={styles.dateLabel} placeholder="Password">
-          Month:
-          <select
-            value={month}
-            onChange={(e) => setMonth(e.target.value)}
-            className={styles.dateInput}
-          >
-            <option value="" disabled hidden>
-              Mois
-            </option>
-            {months.map((m, i) => (
-              <option key={i} value={i + 1}>
-                {m}
-              </option>
-            ))}
-          </select>
-        </label>
-
         <label className={styles.dateLabel}>
           Day:
           <select
@@ -161,6 +143,23 @@ function SignUp() {
             {days.map((d) => (
               <option key={d} value={d}>
                 {d}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className={styles.dateLabel} placeholder="Password">
+          Month:
+          <select
+            value={month}
+            onChange={(e) => setMonth(e.target.value)}
+            className={styles.dateInput}
+          >
+            <option value="" disabled hidden>
+              Mois
+            </option>
+            {months.map((m, i) => (
+              <option key={i} value={i + 1}>
+                {m}
               </option>
             ))}
           </select>
@@ -185,9 +184,12 @@ function SignUp() {
         </label>
 
         <p>
-          Selected date:{" "}
+          Votre anniversaire:{" "}
           {day && month && year
-            ? `${year}-${month.padStart?.(2, "0")}-${day.padStart?.(2, "0")}`
+            ? `🎉${day.padStart?.(2, "0")}-${month.padStart?.(
+                2,
+                "0"
+              )}-${year}🎂`
             : "Incomplete"}
         </p>
       </div>

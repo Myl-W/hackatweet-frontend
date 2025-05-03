@@ -62,12 +62,10 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Modal d'inscription */}
       <Modal isOpen={isSignUpOpen} onClose={() => setIsSignUpOpen(false)}>
         <SignUp />
       </Modal>
 
-      {/* Modal de connexion */}
       <Modal isOpen={isSignInOpen} onClose={() => setIsSignInOpen(false)}>
         <SignIn />
       </Modal>

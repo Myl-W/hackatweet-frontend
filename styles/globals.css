@@ -12,3 +12,22 @@ body {
 p {
   color: white;
 }
+
+input::placeholder {
+  color: rgb(179, 177, 177);
+}
+
+select {
+  color: rgb(179, 177, 177);
+}
+
+h6 {
+  color: white;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+span {
+  color: white;
+  margin-left: 10px;
+}

@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { userUsername, userPassword } from "../../reducer/login";
-import { userLogin, userLogout } from "../../reducer/userAccess";
+import { userLogin } from "../../reducer/userAccess";
 
 function SignIn() {
   const router = useRouter();

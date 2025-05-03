@@ -28,6 +28,9 @@
   background-color: black;
   width: 30%;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .center {
@@ -47,7 +50,6 @@
 
 .logo {
   transform: rotate(180deg);
-  margin: 20px;
 }
 
 .leftUp {
@@ -67,12 +69,58 @@
   margin-left: 20px;
 }
 
+.msgCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid #656565;
+}
+
+.tweet {
+  border-radius: 50%;
+}
+
+.tweet_msg {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+.tweet_card {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.headTweet {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.footTweet {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.tweet_name {
+  margin-left: 20px;
+}
+
 .tweet_content {
   display: flex;
   flex-direction: column;
-
-  margin-bottom: 20px;
   border-bottom: 1px solid #656565;
+}
+
+.msgContent {
+  overflow: scroll;
+  height: 500px;
 }
 
 .tweet_input {
@@ -103,6 +151,7 @@
 
 .hashtag {
   display: flex;
+  flex-direction: column;
   margin: auto;
   width: 90%;
   height: 300px;
@@ -129,4 +178,8 @@
   border-radius: 20px;
   color: white;
   background-color: #00acee;
+}
+
+.tag {
+  margin-top: 20px;
 }
