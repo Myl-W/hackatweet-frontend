@@ -37,10 +37,13 @@
 
 .text_dateNaissance {
   color: white;
+  font-size: 14px;
 }
 
 .text {
   color: white;
+  font-size: 16px;
+  margin-bottom: -10px;
 }
 
 .input {
@@ -89,19 +92,12 @@
   color: white;
 }
 
-.logo {
+.logo_signup {
   transform: rotate(180deg);
+  margin-bottom: -10px;
+  margin-top: -30px;
 }
 
-.btn_modal_content {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  width: 100%;
-}
-
-.btn_modal {
-  color: white;
-  background-color: transparent;
-  border: none;
+.completeDate {
+  margin-top: -15px;
 }

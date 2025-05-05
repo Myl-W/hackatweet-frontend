@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { userUsername, userPassword } from "../../reducer/login";
 import { userLogin } from "../../reducer/userAccess";
 import Image from "next/image";
+import SignUp from "../components/SignUp";
+import Modal from "../components/Modal";
 
 function SignIn() {
   const router = useRouter();
@@ -13,6 +15,8 @@ function SignIn() {
   const username = useSelector((state) => state.login.valueUsername);
   const password = useSelector((state) => state.login.valuePassword);
   const [signInUsername, setSignInUsername] = useState("");
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const [isSignInOpen, setIsSignInOpen] = useState(true);
 
   const handleConnection = (e) => {
     e.preventDefault();
@@ -46,76 +50,75 @@ function SignIn() {
   };
 
   const handleRedirectLogin = () => {
-    router.push("login/SignUp");
+    router.push("/login");
+    setIsSignUpOpen(true);
+    setIsSignInOpen(false);
   };
 
   return (
-    <div className={styles.loginContent}>
-      <div className={styles.btn_modal_content}>
-        <button
-          className={styles.btn_modal}
-          onClick={(e) => e.stopPropagation()}
-        >
-          X
-        </button>
-      </div>
-      <div>
-        <Image
-          className={styles.logo}
-          src={"/logo-twitter.png"}
-          alt={"logo-twitter.png"}
-          width={60}
-          height={60}
-        />
-      </div>
-      <div>
-        <h2 className={styles.title}>Connectez-vous à hackatweet</h2>
-      </div>
+    <>
+      <div className={styles.loginContent}>
+        <div>
+          <Image
+            className={styles.logo}
+            src={"/logo-twitter.png"}
+            alt={"logo-twitter.png"}
+            width={60}
+            height={60}
+          />
+        </div>
+        <div>
+          <h2 className={styles.title}>Connectez-vous à hackatweet</h2>
+        </div>
 
-      <div>
-        <input
-          className={styles.input}
-          type="text"
-          placeholder="Username"
-          onChange={(e) => {
-            const value = e.target.value;
-            setSignInUsername(value);
-          }}
-        />
-      </div>
-      <div>
-        <input
-          className={styles.input}
-          type="password"
-          placeholder="Password"
-          onChange={(e) => {
-            const value = e.target.value;
+        <div>
+          <input
+            className={styles.input}
+            type="text"
+            placeholder="Username"
+            onChange={(e) => {
+              const value = e.target.value;
+              setSignInUsername(value);
+            }}
+          />
+        </div>
+        <div>
+          <input
+            className={styles.input}
+            type="password"
+            placeholder="Password"
+            onChange={(e) => {
+              const value = e.target.value;
 
-            dispatch(userPassword(value));
-          }}
-        />
-      </div>
-      <div>
-        <button
-          type="submit"
-          className={styles.login}
-          onClick={handleConnection}
-        >
-          Se connecter
-        </button>
-      </div>
-      <div>
-        <p>
-          Vous n'avez pas de compte ?{" "}
+              dispatch(userPassword(value));
+            }}
+          />
+        </div>
+        <div>
           <button
-            onClick={handleRedirectLogin}
-            className={styles.btn_inscription}
+            type="submit"
+            className={styles.login}
+            onClick={handleConnection}
           >
-            Inscrivez-vous
+            Se connecter
           </button>
-        </p>
+        </div>
+        <div>
+          <p>
+            Vous n'avez pas de compte ?{" "}
+            <button
+              onClick={handleRedirectLogin}
+              className={styles.btn_inscription}
+            >
+              Inscrivez-vous
+            </button>
+          </p>
+        </div>
       </div>
-    </div>
+      <Modal isOpen={isSignUpOpen} onClose={() => setIsSignUpOpen(false)}>
+        <SignUp />
+      </Modal>
+    </>
   );
 }
 

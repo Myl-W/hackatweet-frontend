@@ -47,7 +47,7 @@ function SignUp() {
     { length: 100 },
     (_, i) => new Date().getFullYear() - i
   );
-  console.log(signUpUsername);
+
   const handleRegister = () => {
     fetch("http://localhost:3000/users/signup", {
       method: "POST",
@@ -89,17 +89,9 @@ function SignUp() {
 
   return (
     <div className={styles.content}>
-      <div className={styles.btn_modal_content}>
-        <button
-          className={styles.btn_modal}
-          onClick={(e) => e.stopPropagation()}
-        >
-          X
-        </button>
-      </div>
       <div>
         <Image
-          className={styles.logo}
+          className={styles.logo_signup}
           src={"/logo-twitter.png"}
           alt={"logo-twitter.png"}
           width={60}
@@ -145,14 +137,7 @@ function SignUp() {
           />
         </div>
       </div>
-      <div>
-        <h5 className={styles.text}>Date de naissance</h5>
-        <p className={styles.text_dateNaissance}>
-          Cette information ne sera pas affichée publiquement. Confirmez votre
-          âge, même si ce compte est pour une entreprise, un animal de compagnie
-          ou autre chose.
-        </p>
-      </div>
+      <h5 className={styles.text}>Date de naissance</h5>
       <div className={styles.contentDate}>
         <label className={styles.dateLabel}>
           Day:
@@ -207,7 +192,7 @@ function SignUp() {
           </select>
         </label>
 
-        <p>
+        <p className={styles.completeDate}>
           Votre anniversaire:{" "}
           {day && month && year
             ? `🎉${day.padStart?.(2, "0")}-${month.padStart?.(
@@ -215,6 +200,13 @@ function SignUp() {
                 "0"
               )}-${year}🎂`
             : "Incomplete"}
+        </p>
+      </div>
+      <div>
+        <p className={styles.text_dateNaissance}>
+          Cette information ne sera pas affichée publiquement. Confirmez votre
+          âge, même si ce compte est pour une entreprise, un animal de compagnie
+          ou autre chose.
         </p>
       </div>
 

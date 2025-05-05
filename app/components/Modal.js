@@ -7,9 +7,12 @@ function Modal({ isOpen, onClose, children }) {
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeButton} onClick={onClose}>
-          &times;
-        </button>
+        <div className={styles.btn_modal_content}>
+          <button className={styles.btn_modal} onClick={onClose}>
+            X
+          </button>
+        </div>
+
         {children}
       </div>
     </div>
