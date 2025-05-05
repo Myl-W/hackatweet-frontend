@@ -176,6 +176,14 @@ function Home() {
 
             {/* Message list */}
             <div id="msg-container" className={styles.msgContent}>
+              {activeHashtag && (
+                <div className={styles.resetFilter}>
+                  <p>
+                    Filtré par <strong>{activeHashtag}</strong>
+                  </p>
+                  <button onClick={() => setActiveHashtag(null)}>Voir tous les tweets</button>
+                </div>
+              )}
               {messages
                 .filter((msg) => {
                   if (!activeHashtag) return true;
