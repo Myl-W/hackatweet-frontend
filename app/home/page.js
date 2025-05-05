@@ -12,6 +12,7 @@ function Home() {
   const dispatch = useDispatch();
   const router = useRouter();
   const username = useSelector((state) => state.userAccess.valueLogin);
+  const user = useSelector((state) => state.userAccess.valueLogin);
   const message = useSelector((state) => state.msg.valueMsg);
   const count = useSelector((state) => state.msg.valueCount);
   const [messages, setMessages] = useState([]);
@@ -28,12 +29,25 @@ function Home() {
     const pattern =
       /\B#([a-z0-9]{2,})(?![~!@#$%^&*()=+_`\-\|\/'\[\]\{\}]|[?.,]*\w)/gi;
 
-    const allTags = messages.flatMap((msg) => {
-      const found = msg.message.match(pattern);
-      return found ? found : [];
-    });
+  const counts = {};
 
-    setHashTag(allTags);
+  messages.forEach((msg) => {
+    if (!msg || typeof msg.message !== 'string') return;
+    const found = msg.message.match(pattern);
+    if (found) {
+      found.forEach((tag) => {
+        counts[tag] = (counts[tag] || 0) + 1;
+      });
+    }
+  });
+
+  // Transformer en tableau exploitable
+  const formattedTags = Object.entries(counts).map(([tag, count]) => ({
+    tag,
+    count,
+  }));
+
+    setHashTag(formattedTags);
   }, [messages]);
 
   // Liker un tweet
@@ -96,8 +110,8 @@ function Home() {
                 height={60}
               />
               <div className={styles.tweet_name}>
-                <p>{username.username}</p>
-                <p>@{username.username}</p>
+                <p>{user.username}</p>
+                <p>@{user.username}</p>
               </div>
             </div>
           </div>
@@ -135,7 +149,7 @@ function Home() {
                   <div className={styles.headTweet}>
                     <img className={styles.tweet_msg} src="/tweet.jpg" />
                     <h6>
-                      {username.username} @{username.username}
+                      {user.username} @{user.username}
                     </h6>
                   </div>
 
@@ -168,10 +182,13 @@ function Home() {
               <h1 className={styles.title}>Trends</h1>
             </div>
             <div className={styles.hashtag}>
-              {hashTag.map((hashTag, index) => (
+              {hashTag.map((item, index) => (
                 <div key={index} className={styles.tag}>
                   <div>
-                    <span>{hashTag}</span>
+                    <span>{item.tag}</span>
+                  </div>
+                  <div className={styles.numberOfTags}>
+                    {item.count} tweet{item.count > 1 ? 's' : ''}
                   </div>
                 </div>
               ))}

@@ -183,3 +183,9 @@
 .tag {
   margin-top: 20px;
 }
+
+.numberOfTags{
+  margin-left: 12px;
+  margin-top: 10px;
+  color: grey;
+}
