@@ -68,3 +68,20 @@
   border: none;
   cursor: pointer;
 }
+
+.logo {
+  transform: rotate(180deg);
+}
+
+.btn_modal_content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.btn_modal {
+  color: white;
+  background-color: transparent;
+  border: none;
+}

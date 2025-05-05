@@ -50,6 +50,7 @@
   background-color: black;
   border: 1px solid #333;
   border-radius: 5px;
+  color: white;
 }
 
 .contentDate {
@@ -65,7 +66,7 @@
   width: 100px;
   padding: 5px;
   background-color: black;
-  color: rgba(102, 101, 101, 0.908);
+  color: rgb(179, 177, 177);
   border: 1px solid #333;
 }
 
@@ -86,4 +87,21 @@
   font-weight: bold;
   font-size: 14px;
   color: white;
+}
+
+.logo {
+  transform: rotate(180deg);
+}
+
+.btn_modal_content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.btn_modal {
+  color: white;
+  background-color: transparent;
+  border: none;
 }

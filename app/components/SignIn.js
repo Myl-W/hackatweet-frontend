@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { userUsername, userPassword } from "../../reducer/login";
 import { userLogin } from "../../reducer/userAccess";
+import Image from "next/image";
 
 function SignIn() {
   const router = useRouter();
@@ -42,8 +43,25 @@ function SignIn() {
 
   return (
     <div className={styles.loginContent}>
+      <div className={styles.btn_modal_content}>
+        <button
+          className={styles.btn_modal}
+          onClick={(e) => e.stopPropagation()}
+        >
+          X
+        </button>
+      </div>
       <div>
-        <h2 className={styles.title}>Connexion</h2>
+        <Image
+          className={styles.logo}
+          src={"/logo-twitter.png"}
+          alt={"logo-twitter.png"}
+          width={60}
+          height={60}
+        />
+      </div>
+      <div>
+        <h2 className={styles.title}>Connectez-vous à hackatweet</h2>
       </div>
 
       <div>

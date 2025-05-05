@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "../styles/ModalSignup.module.css";
+import Image from "next/image";
 import {
   userFirstname,
   userUsername,
@@ -81,7 +82,24 @@ function SignUp() {
 
   return (
     <div className={styles.content}>
-      <h2 className={styles.title}>Créer votre compte</h2>
+      <div className={styles.btn_modal_content}>
+        <button
+          className={styles.btn_modal}
+          onClick={(e) => e.stopPropagation()}
+        >
+          X
+        </button>
+      </div>
+      <div>
+        <Image
+          className={styles.logo}
+          src={"/logo-twitter.png"}
+          alt={"logo-twitter.png"}
+          width={60}
+          height={60}
+        />
+      </div>
+      <h2 className={styles.title}>créez votre compte hackatweet</h2>
 
       <div style={{ width: "100%" }}>
         <div style={{ display: "flex", justifyContent: "center" }}>
