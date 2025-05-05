@@ -69,6 +69,7 @@ function SignUp() {
               userAccess: data.result,
               token: data.token,
               username: data.username,
+              birthDate: data.birthDate,
             })
           );
           setSignUpUsername("");

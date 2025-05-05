@@ -21,15 +21,32 @@ function Home() {
   const [messages, setMessages] = useState([]);
   const newMsg = { username, message, liked: false, likeCount: 0 };
   const [hashTag, setHashTag] = useState([]);
-  const [showConfetti, setShowConfetti] = useState(true);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowConfetti(false);
-    }, 10000);
+    if (!user || !user.birthDate) return;
 
-    return () => clearTimeout(timer);
-  }, []);
+    const today = new Date();
+    const birth = new Date(user.birthDate);
+
+    const todayDay = today.getDate();
+    const todayMonth = today.getMonth() + 1;
+
+    const birthDay = birth.getDate();
+    const birthMonth = birth.getMonth() + 1;
+
+    if (birthDay === todayDay && birthMonth === todayMonth) {
+      console.log("🎉 C'est l'anniversaire de l'utilisateur !");
+      setShowConfetti(true);
+      const timer = setTimeout(() => {
+        setShowConfetti(false);
+      }, 10000);
+      return () => clearTimeout(timer);
+    } else {
+      setShowConfetti(false);
+    }
+  }, [user]);
+
   const [activeHashtag, setActiveHashtag] = useState(null);
 
   const disconnect = () => {

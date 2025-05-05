@@ -17,6 +17,7 @@ function SignIn() {
   const [signInUsername, setSignInUsername] = useState("");
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [isSignInOpen, setIsSignInOpen] = useState(true);
+  const [signUpPassword, setSignUpPassword] = useState("");
 
   const handleConnection = (e) => {
     e.preventDefault();
@@ -30,14 +31,13 @@ function SignIn() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("data", data);
         if (data.result) {
-          console.log(data);
           dispatch(
             userLogin({
               userAccess: data.result,
               token: data.token,
               username: data.username,
+              birthDate: data.birthDate,
             })
           );
           userUsername("");
