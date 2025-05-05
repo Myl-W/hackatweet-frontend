@@ -47,14 +47,14 @@ function SignUp() {
     { length: 100 },
     (_, i) => new Date().getFullYear() - i
   );
-
+  console.log(signUpUsername);
   const handleRegister = () => {
     fetch("http://localhost:3000/users/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         firstname: firstname,
-        username: username,
+        username: signUpUsername,
         password: password,
         birthDate,
       }),
