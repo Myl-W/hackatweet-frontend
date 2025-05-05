@@ -184,8 +184,44 @@
   margin-top: 20px;
 }
 
-.numberOfTags{
+.numberOfTags {
   margin-left: 12px;
   margin-top: 10px;
   color: grey;
+}
+
+.birthdayAlert {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #00acee;
+  color: #5d4037;
+  padding: 20px 30px;
+  border: 1px solid #00acee;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.birthdayAlert button {
+  margin-top: 10px;
+  background-color: #00acee;
+  color: white;
+  border: 1px solid white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 }

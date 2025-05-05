@@ -22,6 +22,7 @@ function Home() {
   const newMsg = { username, message, liked: false, likeCount: 0 };
   const [hashTag, setHashTag] = useState([]);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [showBirthdayAlert, setShowBirthdayAlert] = useState(false);
 
   useEffect(() => {
     if (!user || !user.birthDate) return;
@@ -38,6 +39,8 @@ function Home() {
     if (birthDay === todayDay && birthMonth === todayMonth) {
       console.log("🎉 C'est l'anniversaire de l'utilisateur !");
       setShowConfetti(true);
+      setShowBirthdayAlert(true); // Affiche la jolie alerte
+
       const timer = setTimeout(() => {
         setShowConfetti(false);
       }, 10000);
@@ -122,6 +125,15 @@ function Home() {
       {showConfetti && <Confetti width={width} height={height} />}
 
       <main className={styles.main}>
+        {showBirthdayAlert && (
+          <div className={styles.birthdayAlert}>
+            <p>
+              🎉 Joyeux anniversaire <strong>{user.username}</strong> !
+            </p>
+            <button onClick={() => setShowBirthdayAlert(false)}>Fermer</button>
+          </div>
+        )}
+
         <div className={styles.home}>
           <div className={styles.left}>
             <div className={styles.leftUp}>
@@ -181,7 +193,9 @@ function Home() {
                   <p>
                     Filtré par <strong>{activeHashtag}</strong>
                   </p>
-                  <button onClick={() => setActiveHashtag(null)}>Voir tous les tweets</button>
+                  <button onClick={() => setActiveHashtag(null)}>
+                    Voir tous les tweets
+                  </button>
                 </div>
               )}
               {messages
