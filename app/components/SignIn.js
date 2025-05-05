@@ -25,6 +25,7 @@ function SignIn() {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log('data', data);
         if (data.result) {
           console.log(data);
           dispatch(userLogin({ userAccess: data.result, token: data.token }));
