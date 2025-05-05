@@ -3,12 +3,15 @@ import styles from "../styles/Home.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
+import { useWindowSize } from "react-use";
+import Confetti from "react-confetti";
 import { useSelector, useDispatch } from "react-redux";
 import { userMessage, userCount } from "../../reducer/msg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function Home() {
+  const { width, height } = useWindowSize();
   const dispatch = useDispatch();
   const router = useRouter();
   const username = useSelector((state) => state.userAccess.valueLogin);
@@ -18,6 +21,15 @@ function Home() {
   const [messages, setMessages] = useState([]);
   const newMsg = { username, message, liked: false, likeCount: 0 };
   const [hashTag, setHashTag] = useState([]);
+  const [showConfetti, setShowConfetti] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowConfetti(false);
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const disconnect = () => {
     router.push("/login");
@@ -29,23 +41,23 @@ function Home() {
     const pattern =
       /\B#([a-z0-9]{2,})(?![~!@#$%^&*()=+_`\-\|\/'\[\]\{\}]|[?.,]*\w)/gi;
 
-  const counts = {};
+    const counts = {};
 
-  messages.forEach((msg) => {
-    if (!msg || typeof msg.message !== 'string') return;
-    const found = msg.message.match(pattern);
-    if (found) {
-      found.forEach((tag) => {
-        counts[tag] = (counts[tag] || 0) + 1;
-      });
-    }
-  });
+    messages.forEach((msg) => {
+      if (!msg || typeof msg.message !== "string") return;
+      const found = msg.message.match(pattern);
+      if (found) {
+        found.forEach((tag) => {
+          counts[tag] = (counts[tag] || 0) + 1;
+        });
+      }
+    });
 
-  // Transformer en tableau exploitable
-  const formattedTags = Object.entries(counts).map(([tag, count]) => ({
-    tag,
-    count,
-  }));
+    // Transformer en tableau exploitable
+    const formattedTags = Object.entries(counts).map(([tag, count]) => ({
+      tag,
+      count,
+    }));
 
     setHashTag(formattedTags);
   }, [messages]);
@@ -89,6 +101,8 @@ function Home() {
 
   return (
     <div>
+      {showConfetti && <Confetti width={width} height={height} />}
+
       <main className={styles.main}>
         <div className={styles.home}>
           <div className={styles.left}>
@@ -188,7 +202,7 @@ function Home() {
                     <span>{item.tag}</span>
                   </div>
                   <div className={styles.numberOfTags}>
-                    {item.count} tweet{item.count > 1 ? 's' : ''}
+                    {item.count} tweet{item.count > 1 ? "s" : ""}
                   </div>
                 </div>
               ))}
