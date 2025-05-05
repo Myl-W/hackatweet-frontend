@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { userUsername } from "../../reducer/login";
+import { userLogin } from "../../reducer/userAccess";
 import { userMessage, userCount } from "../../reducer/msg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +13,8 @@ import { faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
 function Home() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const username = useSelector((state) => state.login.valueUsername);
+  const username = useSelector((state) => state.userAccess.valueLogin);
+  //const username = useSelector((state) => state.login.valueUsername);
   const message = useSelector((state) => state.msg.valueMsg);
   const count = useSelector((state) => state.msg.valueCount);
   const [messages, setMessages] = useState([]);
@@ -21,6 +23,7 @@ function Home() {
 
   const disconnect = () => {
     router.push("/login");
+    localStorage.clear();
   };
 
   // Affichage des hashtag
@@ -91,8 +94,8 @@ function Home() {
                 height={60}
               />
               <div className={styles.tweet_name}>
-                <p>{username}</p>
-                <p>@{username}</p>
+                <p>{username.username}</p>
+                <p>@{username.username}</p>
               </div>
             </div>
           </div>

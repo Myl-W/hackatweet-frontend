@@ -12,6 +12,7 @@ function SignIn() {
 
   const username = useSelector((state) => state.login.valueUsername);
   const password = useSelector((state) => state.login.valuePassword);
+  const [signInUsername, setSignInUsername] = useState("");
 
   const handleConnection = (e) => {
     e.preventDefault();
@@ -25,10 +26,16 @@ function SignIn() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('data', data);
+        console.log("data", data);
         if (data.result) {
           console.log(data);
-          dispatch(userLogin({ userAccess: data.result, token: data.token }));
+          dispatch(
+            userLogin({
+              userAccess: data.result,
+              token: data.token,
+              username: data.username,
+            })
+          );
           userUsername("");
           userPassword("");
           router.push("/home");
@@ -72,8 +79,7 @@ function SignIn() {
           placeholder="Username"
           onChange={(e) => {
             const value = e.target.value;
-
-            dispatch(userUsername(value));
+            setSignInUsername(value);
           }}
         />
       </div>

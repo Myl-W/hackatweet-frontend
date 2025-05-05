@@ -61,10 +61,16 @@ function SignUp() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('sign up data', data);
+        console.log("sign up data", data);
         if (data.result) {
           console.log(data);
-          dispatch(userLogin({ userAccess: data.result, token: data.token }));
+          dispatch(
+            userLogin({
+              userAccess: data.result,
+              token: data.token,
+              username: data.username,
+            })
+          );
           setSignUpUsername("");
           setSignUpPassword("");
           setSignUpFirstname("");
@@ -123,7 +129,6 @@ function SignUp() {
             onChange={(e) => {
               const value = e.target.value;
               setSignUpUsername(value);
-              dispatch(userUsername(value));
             }}
           />
         </div>
