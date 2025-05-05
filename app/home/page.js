@@ -14,7 +14,6 @@ function Home() {
   const dispatch = useDispatch();
   const router = useRouter();
   const username = useSelector((state) => state.userAccess.valueLogin);
-  //const username = useSelector((state) => state.login.valueUsername);
   const message = useSelector((state) => state.msg.valueMsg);
   const count = useSelector((state) => state.msg.valueCount);
   const [messages, setMessages] = useState([]);
@@ -56,7 +55,12 @@ function Home() {
   // Ajouter un tweet
   const handleTweet = () => {
     if (message.trim()) {
-      const newTweet = { username, message, liked: false, likeCount: 0 };
+      const newTweet = {
+        username,
+        message,
+        liked: false,
+        likeCount: 0,
+      };
       setMessages([...messages, newTweet]);
       dispatch(userMessage(""));
       dispatch(userCount(""));
@@ -133,7 +137,7 @@ function Home() {
                   <div className={styles.headTweet}>
                     <img className={styles.tweet_msg} src="/tweet.jpg" />
                     <h6>
-                      {username} @{username}
+                      {username.username} @{username.username}
                     </h6>
                   </div>
 
