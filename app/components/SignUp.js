@@ -60,6 +60,7 @@ function SignUp() {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log('sign up data', data);
         if (data.result) {
           console.log(data);
           dispatch(userLogin({ userAccess: data.result, token: data.token }));
