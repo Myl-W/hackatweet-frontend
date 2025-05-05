@@ -20,6 +20,7 @@ function Home() {
   const [messages, setMessages] = useState([]);
   const newMsg = { username, message, liked: false, likeCount: 0 };
   const [hashTag, setHashTag] = useState([]);
+  const [activeHashtag, setActiveHashtag] = useState(null);
 
   const disconnect = () => {
     router.push("/login");
@@ -146,36 +147,41 @@ function Home() {
 
             {/* Message list */}
             <div id="msg-container" className={styles.msgContent}>
-              {messages.map((msg, index) => (
-                <div key={index} className={styles.msgCard}>
-                  <div className={styles.headTweet}>
-                    <img className={styles.tweet_msg} src="/tweet.jpg" />
-                    <h6>
-                      {user.username} @{user.username}
-                    </h6>
-                  </div>
+              {messages
+                .filter((msg) => {
+                  if (!activeHashtag) return true;
+                  return msg.message.includes(activeHashtag);
+                })
+                .map((msg, index) => (
+                  <div key={index} className={styles.msgCard}>
+                    <div className={styles.headTweet}>
+                      <img className={styles.tweet_msg} src="/tweet.jpg" />
+                      <h6>
+                        {user.username} @{user.username}
+                      </h6>
+                    </div>
 
-                  <div className="text-container">
-                    <span>{msg.message}</span>
-                  </div>
+                    <div className="text-container">
+                      <span>{msg.message}</span>
+                    </div>
 
-                  <div className={styles.footTweet}>
-                    <span
-                      onClick={() => handleLikeTweet(index)}
-                      style={{
-                        color: msg.liked ? "#e74c3c" : "white",
-                        cursor: "pointer",
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faHeart} />
-                    </span>
-                    <span>{msg.likeCount}</span>
-                    <span onClick={() => deleteMsg(index)}>
-                      <FontAwesomeIcon icon={faTrash} />
-                    </span>
+                    <div className={styles.footTweet}>
+                      <span
+                        onClick={() => handleLikeTweet(index)}
+                        style={{
+                          color: msg.liked ? "#e74c3c" : "white",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faHeart} />
+                      </span>
+                      <span>{msg.likeCount}</span>
+                      <span onClick={() => deleteMsg(index)}>
+                        <FontAwesomeIcon icon={faTrash} />
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
 
@@ -185,7 +191,7 @@ function Home() {
             </div>
             <div className={styles.hashtag}>
               {hashTag.map((item, index) => (
-                <div key={index} className={styles.tag}>
+                <div key={index} className={styles.tag} onClick={() => setActiveHashtag(item.tag)} style={{ cursor: 'pointer' }}>
                   <div>
                     <span>{item.tag}</span>
                   </div>
