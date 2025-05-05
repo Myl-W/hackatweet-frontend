@@ -47,7 +47,7 @@ function SignUp() {
     { length: 100 },
     (_, i) => new Date().getFullYear() - i
   );
-
+  console.log(signUpUsername);
   const handleRegister = () => {
     fetch("http://localhost:3000/users/signup", {
       method: "POST",
